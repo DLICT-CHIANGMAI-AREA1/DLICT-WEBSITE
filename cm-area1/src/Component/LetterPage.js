@@ -53,7 +53,7 @@ export const LETTER = () => {
                                         <img src={Data.image} alt="ict" style={{ width: "100%", height: "auto" }} />
                                     </div>
                                 );
-                            })
+                            }).reverse()
                         ) : (
                             <Spinner
                                 animation="border"
