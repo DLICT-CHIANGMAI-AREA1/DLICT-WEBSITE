@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import { NewsCard } from "./NewsCard";
+import { Letter } from "./letter";
+import { LETTER } from "./LetterPage";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import "animate.css";
 import TrackVisibility from "react-on-screen";
@@ -9,9 +11,30 @@ import { AboutBackDrop } from "./About";
 import { OPMBackDrop } from "./OPMBackDrop";
 import { Link } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
+import { Carousel } from "antd";
 const { REACT_APP_PATH2 } = process.env;
 
 export const News = (className) => {
+    const responsive = {
+        superLargeDesktop: {
+            // the naming can be any, depends on you.
+            breakpoint: { max: 4000, min: 3000 },
+            items: 5,
+        },
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3,
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+        },
+    };
+
     const [loading, setLoading] = useState(true);
     const [Data, setData] = useState([]);
 
@@ -140,6 +163,9 @@ export const News = (className) => {
                                                     {Data.slice(0, 6).map((data, index) => {
                                                         return <NewsCard key={index} data={data} />;
                                                     })}
+                                                </Row>
+                                                <Row>
+                                                    <LETTER></LETTER>
                                                 </Row>
                                             </Tab.Pane>
                                             <Tab.Pane eventKey="second">
