@@ -1,14 +1,11 @@
 import { Container, Row, Col } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { Statistic } from "antd";
 import { useState, useEffect } from "react";
 import ScrollToTop from "react-scroll-to-top";
 import axios from "axios";
 import { Card } from "antd";
 const { REACT_APP_GA } = process.env;
+const { REACT_APP_PATH2 } = process.env;
 
 export const Footer = (className) => {
     const [Online, setOnline] = useState("");
@@ -38,38 +35,24 @@ export const Footer = (className) => {
         get();
     }, []);
 
+    const [Contact, setContact] = useState();
+
+    useEffect(() => {
+        async function get() {
+            axios.get(`${REACT_APP_PATH2}/admin/api/getOther`).then((res) => {
+                setContact(res.data[0].array);
+            });
+        }
+        get();
+    }, []);
+
     return (
         <footer className="footer">
             <ScrollToTop smooth />
             <Container>
                 <Row>
                     <Col xs={12} md={8}>
-                        <p>
-                            สำนักงานเขตพื้นที่การศึกษาประถมศึกษาเชียงใหม่ เขต 1 อาคารอำนวยการกลาง ชั้น 4
-                            ศาลากลางจังหวัดเชียงใหม่ อำเภอเมืองเชียงใหม่ จังหวัดเชียงใหม่ 50300
-                        </p>
-                        <p>
-                            <a
-                                href="https://www.facebook.com/profile.php?id=100057185991041"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <FontAwesomeIcon icon={faFacebook} style={{ paddingRight: "10px" }} />
-                                Facebook
-                            </a>
-                        </p>
-                        <p>
-                            <FontAwesomeIcon icon={faPhone} style={{ paddingRight: "10px" }} />
-                            ติดต่อเราได้ที่ : 053-112333
-                        </p>
-                        <p>
-                            <FontAwesomeIcon icon={faPhone} style={{ paddingRight: "10px" }} />
-                            โทรสาร : 053-112677 ต่อ 319 : กลุ่มส่งเสริมการศึกษาทางไกล เทคโนโลยีสารสนเทศและการสื่อสาร
-                        </p>
-                        <p>
-                            <FontAwesomeIcon icon={faEnvelope} style={{ paddingRight: "10px" }} />
-                            ict@chiangmaiarea1.go.th
-                        </p>
+                        {Contact && Contact.map((item, index) => <p key={index}>{item}</p>)}
                     </Col>
 
                     <Col xs={6} md={4} className="text-center text-sm-end">

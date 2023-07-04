@@ -34,6 +34,7 @@ export const Contact = (className) => {
         }
         get();
     }, []);
+   
 
     const SendEmail = async (e) => {
         e.preventDefault();
@@ -76,7 +77,6 @@ export const Contact = (className) => {
                 <Row className="align-items-center">
                     <Col size={12} md={6}>
                         <h3>ติดต่อเรา</h3>
-
                         {Contact && Contact.map((item, index) => <p key={index}>{item}</p>)}
                     </Col>
                     <Col size={12} md={6}>
