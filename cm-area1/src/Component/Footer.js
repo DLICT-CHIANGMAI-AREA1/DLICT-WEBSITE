@@ -46,13 +46,23 @@ export const Footer = (className) => {
         get();
     }, []);
 
+    console.log(Contact);
+
     return (
         <footer className="footer">
             <ScrollToTop smooth />
             <Container>
                 <Row>
                     <Col xs={12} md={8}>
-                        {Contact && Contact.map((item, index) => <p key={index}>{item}</p>)}
+                        {Contact &&
+                            Contact.map((item, index) => (
+                                <p
+                                    key={index}
+                                    style={{ whiteSpace: "pre-wrap", overflow: "hidden", textOverflow: "ellipsis" }}
+                                >
+                                    {item}
+                                </p>
+                            ))}
                     </Col>
 
                     <Col xs={6} md={4} className="text-center text-sm-end">

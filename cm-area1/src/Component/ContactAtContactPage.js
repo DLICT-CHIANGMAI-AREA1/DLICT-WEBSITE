@@ -34,7 +34,6 @@ export const Contact = (className) => {
         }
         get();
     }, []);
-   
 
     const SendEmail = async (e) => {
         e.preventDefault();
@@ -74,12 +73,20 @@ export const Contact = (className) => {
     return (
         <section className="contact" id="connect">
             <Container>
-                <Row className="align-items-center">
-                    <Col size={12} md={6}>
+                <Row>
+                    <Col xs={12} md={7}>
                         <h3>ติดต่อเรา</h3>
-                        {Contact && Contact.map((item, index) => <p key={index}>{item}</p>)}
+                        {Contact &&
+                            Contact.map((item, index) => (
+                                <p
+                                    key={index}
+                                    style={{ whiteSpace: "pre-wrap", overflow: "hidden", textOverflow: "ellipsis" }}
+                                >
+                                    {item}
+                                </p>
+                            ))}
                     </Col>
-                    <Col size={12} md={6}>
+                    <Col xs={12} md={5}>
                         <h3>Social Media</h3>
                         <p>
                             <a href={Facebook} target="_blank" rel="noreferrer">
@@ -100,7 +107,6 @@ export const Contact = (className) => {
                             </a>
                         </p>
                         <p>
-                            {" "}
                             <a href={Instagram} target="_blank" rel="noreferrer">
                                 <FontAwesomeIcon icon={faInstagram} style={{ paddingRight: "10px" }} />
                                 Instagram
